@@ -4,57 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar Tailwind</title>
-    <link href="/output.css" rel="stylesheet"> <!-- Pastikan tautan ke CSS output Anda benar -->
+    <title>@yield('title')</title>
+    @vite('resources/css/app.css')
 </head>
 
 <body class="bg-gray-100">
-
     <!-- Navbar -->
-    <nav class="bg-blue-500 p-4">
-        <div class="container mx-auto flex items-center justify-between">
-            <!-- Logo -->
-            <a href="#" class="text-white font-bold text-xl">Brand</a>
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-bold text-blue-600">MyLogo</a>
+                </div>
 
-            <!-- Menu for large screens -->
-            <div class="hidden md:flex space-x-6">
-                <a href="#" class="text-white hover:text-gray-200">Home</a>
-                <a href="#" class="text-white hover:text-gray-200">About</a>
-                <a href="#" class="text-white hover:text-gray-200">Services</a>
-                <a href="#" class="text-white hover:text-gray-200">Contact</a>
-            </div>
+                <!-- Links (Desktop) -->
+                <div class="hidden sm:flex space-x-4">
+                    <a href="#"
+                        class="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="#"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="#"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                    <a href="#"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                </div>
 
-            <!-- Hamburger Menu for mobile -->
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                <!-- Mobile Menu Button -->
+                <div class="sm:hidden">
+                    <button id="mobile-menu-button"
+                        class="text-gray-600 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 p-2 rounded-md">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- Mobile Menu (hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-blue-500">
-            <a href="#" class="block text-white hover:bg-blue-600 p-4">Home</a>
-            <a href="#" class="block text-white hover:bg-blue-600 p-4">About</a>
-            <a href="#" class="block text-white hover:bg-blue-600 p-4">Services</a>
-            <a href="#" class="block text-white hover:bg-blue-600 p-4">Contact</a>
+        <!-- Mobile Menu Links -->
+        <div id="mobile-menu" class="sm:hidden hidden">
+            <div class="space-y-1 px-2 pb-3 pt-2">
+                <a href="#"
+                    class="text-gray-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#"
+                    class="text-gray-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#"
+                    class="text-gray-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="#"
+                    class="text-gray-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
         </div>
     </nav>
 
+    <!-- Main Content -->
+    <main>
+        @yield('content')
+    </main>
+
+    <!-- Script to Toggle Mobile Menu -->
     <script>
-        // Script to toggle the mobile menu
-        const menuBtn = document.getElementById('menu-btn');
+        const menuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        menuBtn.addEventListener('click', () => {
+        menuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
     </script>
-
 </body>
 
 </html>
